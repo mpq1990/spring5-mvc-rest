@@ -26,7 +26,9 @@ public class SwaggerConfig {
                 build().
                 pathMapping("/").
                 apiInfo(metaData()).
-                tags(new Tag("customerControllerTag", "This is our customer controller."));
+                tags(new Tag("customerControllerTag", "This is our customer controller.")).tags(
+                new Tag("vendorControllerTag", "This is our vendor controller")
+        );
     }
 
     private ApiInfo metaData() {
