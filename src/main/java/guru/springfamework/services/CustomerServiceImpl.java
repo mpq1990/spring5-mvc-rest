@@ -65,7 +65,7 @@ public class CustomerServiceImpl implements CustomerService {
             customerDTO.setCustomUrl("/api/v1/customer/" + customer.getId());
 
             return returnCustomerDTO;
-        }).orElseThrow(RuntimeException::new);
+        }).orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
