@@ -65,7 +65,7 @@ public class CustomerServiceImplIT {
 
     @Test
     public void patchCustomerUpdateLastName() {
-        String newLastame = "Test1";
+        String newLastName = "Test1";
         Long id = getCustomerId();
 
         Customer originalCustomer = customerRepository.getOne(id);
@@ -74,14 +74,14 @@ public class CustomerServiceImplIT {
         String originalLastName = originalCustomer.getLastName();
 
         CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setLastName(newLastame);
+        customerDTO.setLastName(newLastName);
 
         customerService.patchCustomerDTO(id, customerDTO);
 
         Customer updatedCustomer = customerRepository.findById(id).get();
 
         assertNotNull(updatedCustomer);
-        assertEquals(newLastame, updatedCustomer.getLastName());
+        assertEquals(newLastName, updatedCustomer.getLastName());
         assertThat(originalLastName, not(updatedCustomer.getLastName()));
         assertEquals(originalFirstName, updatedCustomer.getFirstName());
 
