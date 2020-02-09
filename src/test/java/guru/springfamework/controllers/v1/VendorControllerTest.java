@@ -56,7 +56,7 @@ public class VendorControllerTest {
         when(vendorService.getAllVendors()).thenReturn(Arrays.asList(vendor1, vendor2));
 
         mockMvc.perform(get("/api/v1/vendors/")
-                .contentType(MediaType.APPLICATION_JSON))
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.vendors", hasSize(2)));
     }
@@ -73,7 +73,7 @@ public class VendorControllerTest {
 
         //when
         mockMvc.perform(get("/api/v1/vendors/1")
-                .contentType(MediaType.APPLICATION_JSON))
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", equalTo("Michale")));
     }
@@ -90,7 +90,7 @@ public class VendorControllerTest {
         when(vendorService.createNewVendor(vendorDTO)).thenReturn(returnedDto);
 
         mockMvc.perform(post("/api/v1/vendors/").
-                contentType(MediaType.APPLICATION_JSON).
+                contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).
                 content(asJsonString(vendorDTO))).
                 andExpect(status().isCreated()).
                 andExpect(jsonPath("$.name", equalTo("Test"))).
@@ -110,7 +110,7 @@ public class VendorControllerTest {
         when(vendorService.saveVendorDTO(anyLong(), any(VendorDTO.class))).thenReturn(returnedDto);
 
         mockMvc.perform(put("/api/v1/vendors/1").
-                contentType(MediaType.APPLICATION_JSON).
+                contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).
                 content(asJsonString(vendorDTO))).
                 andExpect(status().isOk()).
                 andExpect(jsonPath("$.name", equalTo("Test"))).
@@ -130,7 +130,7 @@ public class VendorControllerTest {
         when(vendorService.patchVendorDTO(anyLong(), any(VendorDTO.class))).thenReturn(returnedDto);
 
         mockMvc.perform(patch("/api/v1/vendors/1").
-                contentType(MediaType.APPLICATION_JSON).
+                contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).
                 content(asJsonString(vendorDTO))).
                 andExpect(status().isOk()).
                 andExpect(jsonPath("$.name", equalTo("Test"))).

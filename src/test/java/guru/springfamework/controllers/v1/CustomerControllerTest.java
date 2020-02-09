@@ -59,7 +59,7 @@ public class CustomerControllerTest {
         when(customerService.getAllCustomers()).thenReturn(Arrays.asList(customer1, customer2));
 
         mockMvc.perform(get("/api/v1/customers/")
-                .contentType(MediaType.APPLICATION_JSON))
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.customers", hasSize(2)));
     }
@@ -77,7 +77,7 @@ public class CustomerControllerTest {
 
         //when
         mockMvc.perform(get("/api/v1/customers/1")
-                .contentType(MediaType.APPLICATION_JSON))
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", equalTo("Michale")));
     }
@@ -96,7 +96,7 @@ public class CustomerControllerTest {
         when(customerService.createNewCustomer(customerDTO)).thenReturn(returnedDto);
 
         mockMvc.perform(post("/api/v1/customers/").
-                contentType(MediaType.APPLICATION_JSON).
+                contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).
                 content(asJsonString(customerDTO))).
                 andExpect(status().isCreated()).
                 andExpect(jsonPath("$.firstName", equalTo("Test"))).
@@ -119,7 +119,7 @@ public class CustomerControllerTest {
         when(customerService.saveCustomerDTO(anyLong(), any(CustomerDTO.class))).thenReturn(returnedDto);
 
         mockMvc.perform(put("/api/v1/customers/1").
-                contentType(MediaType.APPLICATION_JSON).
+                contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).
                 content(asJsonString(customerDTO))).
                 andExpect(status().isOk()).
                 andExpect(jsonPath("$.firstName", equalTo("Test"))).
@@ -142,7 +142,7 @@ public class CustomerControllerTest {
         when(customerService.patchCustomerDTO(anyLong(), any(CustomerDTO.class))).thenReturn(returnedDto);
 
         mockMvc.perform(patch("/api/v1/customers/1").
-                contentType(MediaType.APPLICATION_JSON).
+                contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).
                 content(asJsonString(customerDTO))).
                 andExpect(status().isOk()).
                 andExpect(jsonPath("$.firstName", equalTo("Test"))).
