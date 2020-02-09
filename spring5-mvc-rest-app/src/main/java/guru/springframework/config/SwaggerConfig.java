@@ -1,4 +1,4 @@
-package guru.springfamework.config;
+package guru.springframework.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

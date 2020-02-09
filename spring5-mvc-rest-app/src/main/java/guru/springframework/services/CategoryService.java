@@ -1,7 +1,7 @@
-package guru.springfamework.services;
+package guru.springframework.services;
 
 
-import guru.springfamework.api.v1.model.CategoryDTO;
+import guru.springframework.api.v1.model.CategoryDTO;
 
 import java.util.List;
 

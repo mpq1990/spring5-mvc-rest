@@ -1,9 +1,9 @@
-package guru.springfamework.services;
+package guru.springframework.services;
 
-import guru.springfamework.api.v1.mapper.CustomerMapper;
-import guru.springfamework.api.v1.model.CustomerDTO;
-import guru.springfamework.domain.Customer;
-import guru.springfamework.repositories.CustomerRepository;
+import guru.springframework.api.v1.mapper.CustomerMapper;
+import guru.springframework.domain.Customer;
+import guru.springframework.model.CustomerDTO;
+import guru.springframework.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +25,7 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.findAll().stream().
                 map(customer -> {
                     CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
-                    customerDTO.setCustomUrl("/api/v1/customer/" + customer.getId());
+                    customerDTO.setCustomerUrl("/api/v1/customer/" + customer.getId());
                     return customerDTO;
                 }).collect(Collectors.toList());
     }
@@ -53,16 +53,16 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDTO patchCustomerDTO(Long id, CustomerDTO customerDTO) {
         return customerRepository.findById(id).map(customer -> {
-            if (customerDTO.getFirstName() != null) {
-                customer.setFirstName(customerDTO.getFirstName());
+            if (customerDTO.getFirstname() != null) {
+                customer.setFirstname(customerDTO.getFirstname());
             }
 
-            if (customerDTO.getLastName() != null) {
-                customer.setLastName(customerDTO.getLastName());
+            if (customerDTO.getLastname() != null) {
+                customer.setLastname(customerDTO.getLastname());
             }
 
             CustomerDTO returnCustomerDTO = customerMapper.customerToCustomerDTO(customer);
-            customerDTO.setCustomUrl("/api/v1/customer/" + customer.getId());
+            customerDTO.setCustomerUrl("/api/v1/customer/" + customer.getId());
 
             return returnCustomerDTO;
         }).orElseThrow(ResourceNotFoundException::new);
@@ -77,7 +77,7 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerDTO saveCustomerAndReturnCustomerDTO(Customer customer) {
         Customer savedCustomer = customerRepository.save(customer);
         CustomerDTO savedCustomerDTO = customerMapper.customerToCustomerDTO(savedCustomer);
-        savedCustomerDTO.setCustomUrl("/api/v1/customer/" + savedCustomer.getId());
+        savedCustomerDTO.setCustomerUrl("/api/v1/customer/" + savedCustomer.getId());
         return savedCustomerDTO;
     }
 }

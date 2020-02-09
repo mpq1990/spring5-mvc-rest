@@ -1,6 +1,6 @@
-package guru.springfamework.repositories;
+package guru.springframework.repositories;
 
-import guru.springfamework.domain.Customer;
+import guru.springframework.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {

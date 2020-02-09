@@ -1,9 +1,9 @@
-package guru.springfamework.services;
+package guru.springframework.services;
 
-import guru.springfamework.api.v1.mapper.CustomerMapper;
-import guru.springfamework.api.v1.model.CustomerDTO;
-import guru.springfamework.domain.Customer;
-import guru.springfamework.repositories.CustomerRepository;
+import guru.springframework.api.v1.mapper.CustomerMapper;
+import guru.springframework.domain.Customer;
+import guru.springframework.model.CustomerDTO;
+import guru.springframework.repositories.CustomerRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -37,13 +37,13 @@ public class CustomerServiceTest {
         //given
         Customer customer1 = new Customer();
         customer1.setId(1l);
-        customer1.setFirstName("Michale");
-        customer1.setLastName("Weston");
+        customer1.setFirstname("Michale");
+        customer1.setLastname("Weston");
 
         Customer customer2 = new Customer();
         customer2.setId(2l);
-        customer2.setFirstName("Sam");
-        customer2.setLastName("Axe");
+        customer2.setFirstname("Sam");
+        customer2.setLastname("Axe");
 
         when(customerRepository.findAll()).thenReturn(Arrays.asList(customer1, customer2));
 
@@ -60,51 +60,51 @@ public class CustomerServiceTest {
         //given
         Customer customer1 = new Customer();
         customer1.setId(1l);
-        customer1.setFirstName("Michale");
-        customer1.setLastName("Weston");
+        customer1.setFirstname("Michale");
+        customer1.setLastname("Weston");
 
         when(customerRepository.findById(anyLong())).thenReturn(java.util.Optional.ofNullable(customer1));
 
         //when
         CustomerDTO customerDTO = customerService.getCustomerById(1L);
 
-        assertEquals("Michale", customerDTO.getFirstName());
+        assertEquals("Michale", customerDTO.getFirstname());
     }
 
     @Test
     public void createNewCustomer() throws Exception {
         CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setFirstName("Test");
+        customerDTO.setFirstname("Test");
 
         Customer savedCustomer = new Customer();
-        savedCustomer.setFirstName(customerDTO.getFirstName());
-        savedCustomer.setLastName(customerDTO.getLastName());
+        savedCustomer.setFirstname(customerDTO.getFirstname());
+        savedCustomer.setLastname(customerDTO.getLastname());
         savedCustomer.setId(1L);
 
         when(customerRepository.save(any())).thenReturn(savedCustomer);
 
         CustomerDTO savedDto = customerService.createNewCustomer(customerDTO);
 
-        assertEquals(customerDTO.getFirstName(), savedDto.getFirstName());
-        assertEquals("/api/v1/customer/1", savedDto.getCustomUrl());
+        assertEquals(customerDTO.getFirstname(), savedDto.getFirstname());
+        assertEquals("/api/v1/customer/1", savedDto.getCustomerUrl());
     }
 
     @Test
     public void saveCustomerByDTO() throws Exception {
         CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setFirstName("Test");
+        customerDTO.setFirstname("Test");
 
         Customer savedCustoemr = new Customer();
-        savedCustoemr.setFirstName(customerDTO.getFirstName());
-        savedCustoemr.setLastName(customerDTO.getLastName());
+        savedCustoemr.setFirstname(customerDTO.getFirstname());
+        savedCustoemr.setLastname(customerDTO.getLastname());
         savedCustoemr.setId(1L);
 
         when(customerRepository.save(any(Customer.class))).thenReturn(savedCustoemr);
 
         CustomerDTO returenedDTO = customerService.saveCustomerDTO(1L, customerDTO);
 
-        assertEquals(customerDTO.getFirstName(), returenedDTO.getFirstName());
-        assertEquals("/api/v1/customer/1", returenedDTO.getCustomUrl());
+        assertEquals(customerDTO.getFirstname(), returenedDTO.getFirstname());
+        assertEquals("/api/v1/customer/1", returenedDTO.getCustomerUrl());
     }
 
     @Test

@@ -1,7 +1,7 @@
-package guru.springfamework.api.v1.mapper;
+package guru.springframework.api.v1.mapper;
 
-import guru.springfamework.api.v1.model.CustomerDTO;
-import guru.springfamework.domain.Customer;
+import guru.springframework.domain.Customer;
+import guru.springframework.model.CustomerDTO;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -17,13 +17,13 @@ public class CustomerMapperTest {
 
         //given
         Customer customer = new Customer();
-        customer.setFirstName(NAME);
+        customer.setFirstname(NAME);
         customer.setId(ID);
 
         //when
         CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
 
         //then
-        assertEquals(NAME, customerDTO.getFirstName());
+        assertEquals(NAME, customerDTO.getFirstname());
     }
 }

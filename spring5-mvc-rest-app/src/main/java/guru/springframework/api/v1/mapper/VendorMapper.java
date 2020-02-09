@@ -1,7 +1,7 @@
-package guru.springfamework.api.v1.mapper;
+package guru.springframework.api.v1.mapper;
 
-import guru.springfamework.api.v1.model.VendorDTO;
-import guru.springfamework.domain.Vendor;
+import guru.springframework.api.v1.model.VendorDTO;
+import guru.springframework.domain.Vendor;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

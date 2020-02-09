@@ -1,11 +1,11 @@
-package guru.springfamework.bootstrap;
+package guru.springframework.bootstrap;
 
-import guru.springfamework.domain.Category;
-import guru.springfamework.domain.Customer;
-import guru.springfamework.domain.Vendor;
-import guru.springfamework.repositories.CategoryRepository;
-import guru.springfamework.repositories.CustomerRepository;
-import guru.springfamework.repositories.VendorRepository;
+import guru.springframework.domain.Category;
+import guru.springframework.domain.Customer;
+import guru.springframework.domain.Vendor;
+import guru.springframework.repositories.CategoryRepository;
+import guru.springframework.repositories.CustomerRepository;
+import guru.springframework.repositories.VendorRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -61,14 +61,14 @@ public class Bootstrap implements CommandLineRunner {
         //given
         Customer customer1 = new Customer();
         customer1.setId(1l);
-        customer1.setFirstName("Michale");
-        customer1.setLastName("Weston");
+        customer1.setFirstname("Michale");
+        customer1.setLastname("Weston");
         customerRepository.save(customer1);
 
         Customer customer2 = new Customer();
         customer2.setId(2l);
-        customer2.setFirstName("Sam");
-        customer2.setLastName("Axe");
+        customer2.setFirstname("Sam");
+        customer2.setLastname("Axe");
         customerRepository.save(customer2);
 
         System.out.println("Customers Loaded: " + customerRepository.count());

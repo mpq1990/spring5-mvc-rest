@@ -1,8 +1,8 @@
-package guru.springfamework.controllers.v1;
+package guru.springframework.controllers.v1;
 
-import guru.springfamework.api.v1.model.VendorDTO;
-import guru.springfamework.controllers.RestResponseEntityExceptionHandler;
-import guru.springfamework.services.VendorService;
+import guru.springframework.api.v1.model.VendorDTO;
+import guru.springframework.controllers.RestResponseEntityExceptionHandler;
+import guru.springframework.services.VendorService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
 
-import static guru.springfamework.controllers.v1.AbstractRestControllerTest.asJsonString;
+import static guru.springframework.controllers.v1.AbstractRestControllerTest.asJsonString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;

@@ -1,12 +1,12 @@
-package guru.springfamework.services;
+package guru.springframework.services;
 
-import guru.springfamework.api.v1.mapper.CustomerMapper;
-import guru.springfamework.api.v1.model.CustomerDTO;
-import guru.springfamework.bootstrap.Bootstrap;
-import guru.springfamework.domain.Customer;
-import guru.springfamework.repositories.CategoryRepository;
-import guru.springfamework.repositories.CustomerRepository;
-import guru.springfamework.repositories.VendorRepository;
+import guru.springframework.api.v1.mapper.CustomerMapper;
+import guru.springframework.bootstrap.Bootstrap;
+import guru.springframework.domain.Customer;
+import guru.springframework.model.CustomerDTO;
+import guru.springframework.repositories.CategoryRepository;
+import guru.springframework.repositories.CustomerRepository;
+import guru.springframework.repositories.VendorRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,20 +49,20 @@ public class CustomerServiceImplIT {
 
         Customer originalCustomer = customerRepository.getOne(id);
 
-        String originalFirstName = originalCustomer.getFirstName();
-        String originalLastName = originalCustomer.getLastName();
+        String originalFirstName = originalCustomer.getFirstname();
+        String originalLastName = originalCustomer.getLastname();
 
         CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setFirstName(newFirstName);
+        customerDTO.setFirstname(newFirstName);
 
         customerService.patchCustomerDTO(id, customerDTO);
 
         Customer updatedCustomer = customerRepository.findById(id).get();
 
         assertNotNull(updatedCustomer);
-        assertEquals(newFirstName, updatedCustomer.getFirstName());
-        assertThat(originalFirstName, not(updatedCustomer.getFirstName()));
-        assertEquals(originalLastName, updatedCustomer.getLastName());
+        assertEquals(newFirstName, updatedCustomer.getFirstname());
+        assertThat(originalFirstName, not(updatedCustomer.getFirstname()));
+        assertEquals(originalLastName, updatedCustomer.getLastname());
 
 
     }
@@ -74,20 +74,20 @@ public class CustomerServiceImplIT {
 
         Customer originalCustomer = customerRepository.getOne(id);
 
-        String originalFirstName = originalCustomer.getFirstName();
-        String originalLastName = originalCustomer.getLastName();
+        String originalFirstName = originalCustomer.getFirstname();
+        String originalLastName = originalCustomer.getLastname();
 
         CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setLastName(newLastName);
+        customerDTO.setLastname(newLastName);
 
         customerService.patchCustomerDTO(id, customerDTO);
 
         Customer updatedCustomer = customerRepository.findById(id).get();
 
         assertNotNull(updatedCustomer);
-        assertEquals(newLastName, updatedCustomer.getLastName());
-        assertThat(originalLastName, not(updatedCustomer.getLastName()));
-        assertEquals(originalFirstName, updatedCustomer.getFirstName());
+        assertEquals(newLastName, updatedCustomer.getLastname());
+        assertThat(originalLastName, not(updatedCustomer.getLastname()));
+        assertEquals(originalFirstName, updatedCustomer.getFirstname());
 
     }
 
